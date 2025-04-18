@@ -424,7 +424,134 @@
   </style>
 
   <!-- Servicios -->
-  <section id="Servicios" class="p-10 md-p-l5">
+
+  <section id="Servicios" class="servicios-section">
+    <h2 class="servicios-title">¿Qué hacemos en CrisInnov?</h2>
+    <div class="servicios-list">
+      <div class="servicio-card" data-color="#39ff14" data-hover="#00ff99">Desarrollo web a medida</div>
+      <div class="servicio-card" data-color="#ffa500" data-hover="#ff8c00">Rediseño y mejora de sitios existentes</div>
+      <div class="servicio-card" data-color="#25D366" data-hover="#32cd32">Automatización de WhatsApp con IA, sin costos mensuales</div>
+      <div class="servicio-card" data-color="#8e44ad" data-hover="#9b59b6">CRM + Social media sin pagos mensuales</div>
+      <div class="servicio-card" data-color="#00ffff" data-hover="#40e0d0">Análisis de datos en web y redes sociales</div>
+      <div class="servicio-card" data-color="#0000cd" data-hover="#1e90ff">Sistema omnicanal para atención centralizada</div>
+      <div class="servicio-card" data-color="#ffff00" data-hover="#ffd700">Posicionamiento SEO para atraer clientes</div>
+      <div class="servicio-card" data-color="#1E90FF" data-hover="#00FFFF">Hosting y certificados de seguridad SSL</div>
+
+      <div class="servicio-card" data-color="#00FF90" data-hover="#00FA9A">Software open source a medida</div>
+
+    </div>
+  </section>
+  
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+    }
+  
+    .servicios-section {
+      padding: 80px 20px;
+      text-align: center;
+      overflow-x: hidden;
+    }
+  
+    .servicios-title {
+      font-size: 2.5rem;
+      margin-bottom: 60px;
+    }
+  
+    .servicios-list {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+  
+    .servicio-card {
+      opacity: 0;
+      transform: translateY(40px);
+      border: 2px solid #fff;
+      border-radius: 12px;
+      padding: 25px 20px;
+      font-size: 1.4rem;
+      transition: all 0.6s ease;
+      pointer-events: none;
+      background-color: #111;
+      color: #fff;
+      --neon-color: #fff;
+      --hover-color: #fff;
+      box-shadow: none;
+    }
+  
+    .servicio-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+  
+    .servicio-card.neon {
+      border-color: var(--neon-color);
+      box-shadow: 0 0 4px var(--neon-color),
+                  0 0 6px var(--neon-color);
+    }
+  
+    .servicio-card:hover {
+      border-color: var(--hover-color);
+      box-shadow: 0 0 6px var(--hover-color),
+                  0 0 12px var(--hover-color),
+                  0 0 18px var(--hover-color);
+    }
+  
+    @media (max-width: 600px) {
+      .servicio-card {
+        font-size: 1.1rem;
+        padding: 20px 15px;
+      }
+  
+      .servicios-title {
+        font-size: 2rem;
+      }
+    }
+  </style>
+  
+  <script>
+    const cards = document.querySelectorAll(".servicio-card");
+  
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          const card = entry.target;
+  
+          setTimeout(() => {
+            card.classList.add("visible");
+  
+            const neonColor = card.getAttribute("data-color");
+            const hoverColor = card.getAttribute("data-hover");
+  
+            card.style.setProperty('--neon-color', neonColor);
+            card.style.setProperty('--hover-color', hoverColor);
+  
+            // Enciende neón después de 1 segundo
+            setTimeout(() => {
+              card.classList.add("neon");
+            }, 1000);
+  
+          }, i * 400); // Escalonado
+          observer.unobserve(card);
+        }
+      });
+    }, {
+      threshold: 0.5
+    });
+  
+    cards.forEach(card => observer.observe(card));
+  </script>
+
+  
+  <section class="p-10 md-p-l5">
     <div class="flex flex-column md-flex-row mx-auto">
       <!-- Tarjeta 1 -->
       <div class="w-100pc md-w-40pc">
@@ -432,7 +559,7 @@
           <div class="flex justify-center items-center bg-green-lightest-10 white w-l5 h-l5 br-round mb-5">
             <i data-feather="code" class="w-l5"></i>
           </div>
-          <h4 class="white fw-600 fs-m3 mb-5">Desarrollo web a la medida</h4>
+          <h4 class="white fw-600 fs-m3 mb-5">Tu sitio web, una máquina de ventas</h4>
           <div class="green-lightest fw-600 fs-m1 lh-3 opacity-50">
             Creamos sitios web únicos con diseño UI-UX, tecnologías modernas y experiencias interactivas que conectan
             directamente con tus clientes.
